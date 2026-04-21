@@ -177,15 +177,12 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-block px-3 py-1 bg-blue-100/50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-4">
-              Événement Exclusif RH & Digital
+            <div className="inline-block px-3 py-1 bg-blue-100/50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-6">
+              Thématique de l'événement
             </div>
-            <div className="flex flex-col gap-1 mb-6">
-              <span className="text-primary text-[10px] font-bold uppercase tracking-[0.2em]">Thématique de l'événement</span>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] uppercase tracking-tight">
-                L’entreprise agile : comment les RH soutiennent la croissance
-              </h1>
-            </div>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] mb-6 uppercase tracking-tight">
+              L’entreprise agile : comment les RH soutiennent la croissance
+            </h1>
             <p className="text-sm md:text-base text-slate-600 mb-8 max-w-xl leading-relaxed">
               Explorez l'avenir de la gestion RH : digitalisation, performance et expérience collaborateur. Une demi-journée stratégique pour transformer vos processus et libérer le potentiel de vos équipes.
             </p>
@@ -301,7 +298,7 @@ export default function App() {
             centered={true}
             dark={true}
           />
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-4 mt-10">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 mt-10">
             {program.map((item, i) => (
               <motion.div 
                 key={i}
@@ -309,17 +306,22 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all relative overflow-hidden group"
               >
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-[#1DB2E9]">
+                {/* Step Number Background */}
+                <div className="absolute -right-2 -bottom-4 text-7xl font-extrabold text-white/5 select-none transition-transform group-hover:scale-110">
+                  {String(i + 1).padStart(2, '0')}
+                </div>
+                
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1DB2E9]/15 border border-[#1DB2E9]/20 flex items-center justify-center text-[#1DB2E9] relative z-10 transition-colors group-hover:bg-[#1DB2E9]/25">
                   {item.icon}
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-mono text-[#1DB2E9] font-bold">{item.time}</span>
-                    <h3 className="text-xs font-bold leading-tight text-white">{item.title}</h3>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="text-[10px] font-mono text-[#1DB2E9] font-bold tracking-wider">{item.time}</span>
+                    <h3 className="text-sm font-bold text-white tracking-tight">{item.title}</h3>
                   </div>
-                  <p className="text-slate-300 text-[10px] leading-relaxed">{item.desc}</p>
+                  <p className="text-slate-300 text-xs leading-relaxed max-w-[280px]">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
