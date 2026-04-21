@@ -444,14 +444,18 @@ export default function App() {
                 <label className="label-polish">Email Professionnel</label>
                 <input type="email" name="email" placeholder="jean.dupont@entreprise.com" className="input-polish" onChange={handleInputChange} />
               </div>
+              <div>
+                <label className="label-polish">Entreprise</label>
+                <input type="text" name="entreprise" placeholder="Société S.A.S." className="input-polish" onChange={handleInputChange} />
+              </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="label-polish">Téléphone</label>
                   <input type="tel" name="tel" placeholder="06 00 00 00 00" className="input-polish" onChange={handleInputChange} />
                 </div>
                 <div>
-                  <label className="label-polish">Entreprise</label>
-                  <input type="text" name="entreprise" placeholder="Société S.A.S." className="input-polish" onChange={handleInputChange} />
+                  <label className="label-polish">Fonction</label>
+                  <input type="text" name="fonction" placeholder="DRH, DAF, etc." className="input-polish" onChange={handleInputChange} />
                 </div>
               </div>
               <div className="pt-4">
