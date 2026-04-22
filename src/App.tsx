@@ -547,19 +547,28 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-10">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center space-x-4">
-            <img src={partners[0].logo} alt="Logo" className="h-4 object-contain opacity-50 grayscale" referrerPolicy="no-referrer" />
-            <span className="text-[10px] text-slate-400 font-bold tracking-tight uppercase">THALÈS INFORMATIQUE © 2026</span>
-            <div className="h-3 w-px bg-slate-200"></div>
-            <div className="flex gap-4">
-              <a href="#" className="text-[10px] text-primary font-extrabold hover:underline uppercase">LinkedIn</a>
-              <a href="#" className="text-[10px] text-primary font-extrabold hover:underline uppercase">Site Web</a>
-            </div>
+      <footer className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-8 flex flex-col items-center">
+          {/* Main Logo Thales */}
+          <div className="flex flex-col items-center mb-16">
+            <img src={partners[0].logo} alt="Thalès Informatique" className="h-14 md:h-20 object-contain mb-4" referrerPolicy="no-referrer" />
+            <span className="text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">THALÈS INFORMATIQUE © {currentYear}</span>
           </div>
-          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-            Contact : events@thales-info.fr
+
+          {/* Partners Section in Footer */}
+          <div className="flex flex-col items-center w-full">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">En partenariat avec</p>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+              {partners.slice(1).map((p, i) => (
+                <img 
+                  key={i} 
+                  src={p.logo} 
+                  alt={p.name} 
+                  className={`${p.name === "Factorial" ? "h-6 md:h-8" : p.name === "Heliolys" ? "h-10 md:h-12" : "h-9 md:h-11"} object-contain`} 
+                  referrerPolicy="no-referrer" 
+                />
+              ))}
+            </div>
           </div>
         </div>
       </footer>
