@@ -24,7 +24,7 @@ import {
   Gift,
   Rocket
 } from "lucide-react";
-import { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 
 const partners = [
   { name: "Thalès Informatique", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1772030743/logo_thal%C3%A8s_1_tkhzkc.png" },
@@ -122,8 +122,48 @@ export default function App() {
     fonction: ""
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Lien App Script à remplacer
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTRGPi8B22dxUgBwAt0FJs2rDwKmc28td5ISejQqhovdOLGFYrjn9NT-6WOCnLIfuQ7A/exec";
+      
+      const response = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          date: new Date().toLocaleString('fr-FR'),
+        }),
+      });
+
+      setIsSuccess(true);
+      setFormData({
+        nom: "",
+        prenom: "",
+        email: "",
+        tel: "",
+        entreprise: "",
+        fonction: ""
+      });
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const currentYear = new Date().getFullYear();
@@ -343,7 +383,7 @@ export default function App() {
             centered={true}
             dark={true}
           />
-          <div className="grid md:grid-cols-2 gap-x-8 gap-y-6 mt-10">
+          <div className="flex flex-col items-center gap-y-6 mt-12 max-w-2xl mx-auto">
             {program.map((item, i) => (
               <motion.div 
                 key={i}
@@ -351,21 +391,21 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.05, duration: 0.5 }}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden group motion-gpu transition-colors duration-200"
+                className="w-full flex flex-col sm:flex-row items-center sm:items-start gap-6 p-6 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group motion-gpu transition-colors duration-200"
               >
                 {/* Step Number Background */}
                 <div className="absolute -right-2 -bottom-4 text-7xl font-extrabold text-white/5 select-none transition-transform group-hover:scale-110">
                   {String(i + 1).padStart(2, '0')}
                 </div>
                 
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#1DB2E9]/15 border border-[#1DB2E9]/20 flex items-center justify-center text-[#1DB2E9] relative z-10 transition-colors group-hover:bg-[#1DB2E9]/25">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#1DB2E9]/15 border border-[#1DB2E9]/20 flex items-center justify-center text-[#1DB2E9] relative z-10 transition-colors group-hover:bg-[#1DB2E9]/25">
                   {item.icon}
                 </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <h3 className="text-sm font-bold text-white tracking-tight">{item.title}</h3>
+                <div className="relative z-10 text-center sm:text-left">
+                  <div className="mb-2">
+                    <h3 className="text-base md:text-lg font-bold text-white tracking-tight">{item.title}</h3>
                   </div>
-                  <p className="text-slate-300 text-xs leading-relaxed max-w-[280px]">{item.desc}</p>
+                  <p className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-md">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -481,44 +521,77 @@ export default function App() {
           </div>
 
           <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.06)] border border-slate-100">
-            <form className="grid gap-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="label-polish">Prénom</label>
-                  <input type="text" name="prenom" placeholder="Mohamed" className="input-polish" onChange={handleInputChange} />
+            {isSuccess ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                  <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <div>
-                  <label className="label-polish">Nom</label>
-                  <input type="text" name="nom" placeholder="Berrada" className="input-polish" onChange={handleInputChange} />
-                </div>
-              </div>
-              <div>
-                <label className="label-polish">Email Professionnel</label>
-                <input type="email" name="email" placeholder="mohamed.berrada@entreprise.com" className="input-polish" onChange={handleInputChange} />
-              </div>
-              <div>
-                <label className="label-polish">Téléphone</label>
-                <input type="tel" name="tel" placeholder="06 00 00 00 00" className="input-polish" onChange={handleInputChange} />
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="label-polish">Entreprise</label>
-                  <input type="text" name="entreprise" placeholder="Société S.A.S." className="input-polish" onChange={handleInputChange} />
-                </div>
-                <div>
-                  <label className="label-polish">Fonction</label>
-                  <input type="text" name="fonction" placeholder="DRH, DAF, etc." className="input-polish" onChange={handleInputChange} />
-                </div>
-              </div>
-              <div className="pt-4">
-                <button type="submit" className="w-full btn-primary text-sm py-4">
-                  Confirmer ma participation
-                </button>
-                <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
-                  Accès gratuit sur inscription – Validation envoyée par email
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Inscription confirmée !</h3>
+                <p className="text-slate-500 mb-8 max-w-sm mx-auto">
+                  Merci pour votre inscription. Vous recevrez une confirmation par email très prochainement.
                 </p>
-              </div>
-            </form>
+                <button 
+                  onClick={() => setIsSuccess(false)}
+                  className="text-sm font-bold text-primary uppercase tracking-widest hover:underline"
+                >
+                  Faire une autre inscription
+                </button>
+              </motion.div>
+            ) : (
+              <form className="grid gap-4" onSubmit={handleSubmit}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="label-polish">Prénom</label>
+                    <input type="text" name="prenom" required placeholder="Mohamed" className="input-polish" value={formData.prenom} onChange={handleInputChange} />
+                  </div>
+                  <div>
+                    <label className="label-polish">Nom</label>
+                    <input type="text" name="nom" required placeholder="Berrada" className="input-polish" value={formData.nom} onChange={handleInputChange} />
+                  </div>
+                </div>
+                <div>
+                  <label className="label-polish">Email Professionnel</label>
+                  <input type="email" name="email" required placeholder="mohamed.berrada@entreprise.com" className="input-polish" value={formData.email} onChange={handleInputChange} />
+                </div>
+                <div>
+                  <label className="label-polish">Téléphone</label>
+                  <input type="tel" name="tel" required placeholder="06 00 00 00 00" className="input-polish" value={formData.tel} onChange={handleInputChange} />
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="label-polish">Entreprise</label>
+                    <input type="text" name="entreprise" required placeholder="Société S.A.S." className="input-polish" value={formData.entreprise} onChange={handleInputChange} />
+                  </div>
+                  <div>
+                    <label className="label-polish">Fonction</label>
+                    <input type="text" name="fonction" required placeholder="DRH, DAF, etc." className="input-polish" value={formData.fonction} onChange={handleInputChange} />
+                  </div>
+                </div>
+                <div className="pt-4">
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className={`w-full btn-primary text-sm py-4 flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      "Confirmer ma participation"
+                    )}
+                  </button>
+                  <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
+                    Accès gratuit sur inscription – Validation envoyée par email
+                  </p>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>
