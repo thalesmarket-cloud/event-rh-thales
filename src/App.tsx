@@ -28,8 +28,8 @@ import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 
 const partners = [
   { name: "Thalès Informatique", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1772030743/logo_thal%C3%A8s_1_tkhzkc.png" },
-  { name: "Factorial", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1771409242/Factorial_logo_couleur_xywdb2.png" },
   { name: "Sage", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776701410/logo_event_grp_2_mzjosn.png" },
+  { name: "Factorial", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1771409242/Factorial_logo_couleur_xywdb2.png" },
   { name: "Heliolys", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776701411/logo_event_grp_1_etedmr.png" }
 ];
 
@@ -51,7 +51,7 @@ const speakers = [
     name: "Ayoub EL ABD",
     role: "Strategic Partner Lead",
     company: "Factorial",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400"
+    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776872482/1749232766691_gv6gzl.jpg"
   },
   {
     name: "Yassine REDA",
