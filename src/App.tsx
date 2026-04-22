@@ -129,7 +129,7 @@ export default function App() {
       <nav className="fixed top-0 w-full z-50 bg-white border-b border-slate-200 px-8 py-3 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-6">
-            <img src={partners[0].logo} alt="Thalès Informatique" className="h-7 object-contain" referrerPolicy="no-referrer" />
+            <img src={partners[0].logo} alt="Thalès Informatique" className="h-10 object-contain" referrerPolicy="no-referrer" />
             <div className="h-6 w-px bg-slate-200 hidden md:block"></div>
             <div className="hidden md:flex items-center space-x-4 grayscale opacity-70 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
               <span>Factorial</span>
@@ -203,8 +203,12 @@ export default function App() {
               </a>
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <img key={i} src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" className="w-8 h-8 rounded-full border-2 border-white ring-1 ring-slate-100" />
+                  {[
+                    "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=100&h=100",
+                    "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=100&h=100",
+                    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=100&h=100"
+                  ].map((url, i) => (
+                    <img key={i} src={url} alt="Participant" className="w-8 h-8 rounded-full border-2 border-white ring-1 ring-slate-100 object-cover" />
                   ))}
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">PLACES LIMITÉES</span>
@@ -413,9 +417,9 @@ export default function App() {
           <div className="relative">
             <div className="bg-white rounded-2xl p-3 shadow-2xl rotate-2">
               <img 
-                src="https://picsum.photos/seed/rh-event/600/400" 
-                alt="Event" 
-                className="rounded-xl grayscale opacity-90"
+                src="https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844943/BostonDeviceRobotics_CR5_4019-scaled_ih54p9.jpg" 
+                alt="Event Audience" 
+                className="rounded-xl opacity-90 object-cover aspect-[3/2]"
                 referrerPolicy="no-referrer"
               />
             </div>
@@ -497,7 +501,7 @@ export default function App() {
                   Confirmer ma participation
                 </button>
                 <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
-                  Accès soumis à validation — Confirmation par email sous 48h
+                  Inscription gratuite – Places limitées
                 </p>
               </div>
             </form>
