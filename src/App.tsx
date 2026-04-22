@@ -36,7 +36,8 @@ const partners = [
 const heroImages = [
   "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844664/image00054_ufe5kr.jpg",
   "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848850/image00052_q4qb19.jpg",
-  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848849/image00051_gwqgjr.jpg"
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848849/image00051_gwqgjr.jpg",
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776849290/image00009_tkbh8w.jpg"
 ];
 
 const speakers = [
@@ -62,11 +63,11 @@ const speakers = [
 
 const program = [
   { time: "14:00", title: "Accueil & Coffee Break", desc: "Check-in, rafraîchissements et networking informel.", icon: <Coffee className="w-4 h-4" /> },
-  { time: "14:30", title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
-  { time: "15:30", title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
-  { time: "16:15", title: "Session Q&A", desc: "Échanges interactifs et réponses à vos problématiques.", icon: <MessageSquare className="w-4 h-4" /> },
-  { time: "16:45", title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
-  { time: "17:15", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
+  { time: "14:40", title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
+  { time: "15:15", title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
+  { time: "16:05", title: "Session Q&A", desc: "Échanges interactifs et réponses à vos problématiques.", icon: <MessageSquare className="w-4 h-4" /> },
+  { time: "16:15", title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
+  { time: "16:30", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
 ];
 
 const values = [
@@ -320,6 +321,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto relative z-10">
           <SectionTitle 
             title="Agenda de l'après-midi" 
+            subtitle="Des temps forts animés par des experts du secteur"
             centered={true}
             dark={true}
           />
@@ -348,37 +350,6 @@ export default function App() {
                   </div>
                   <p className="text-slate-300 text-xs leading-relaxed max-w-[280px]">{item.desc}</p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Results Section */}
-      <section className="section-padding bg-white">
-        <div className="max-w-7xl mx-auto">
-          <SectionTitle 
-            title="L’impact pour vos RH" 
-            subtitle="L'impact direct de la digitalisation sur votre performance quotidienne."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { label: "Productivité RH", desc: "Gain de productivité grâce à l’automatisation des tâches administratives.", icon: "⚡" },
-              { label: "Gagnées / Semaine", desc: "Temps gagné sur la gestion des congés, absences et validations.", icon: "⏱" },
-              { label: "Temps Administratif", desc: "Temps économisé en centralisant toutes les données dans une plateforme.", icon: "📉" },
-              { label: "Visibilité Data", desc: "Visibilité sur vos données RH avec des reportings en temps réel.", icon: "📊" }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl hover:border-transparent transition-all duration-300"
-              >
-                <div className="text-4xl mb-6 grayscale group-hover:grayscale-0 transition-all">{stat.icon}</div>
-                <div className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-4 leading-tight">{stat.label}</div>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">{stat.desc}</p>
               </motion.div>
             ))}
           </div>
