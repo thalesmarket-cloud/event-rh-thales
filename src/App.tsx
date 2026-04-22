@@ -356,11 +356,11 @@ export default function App() {
             ].map((v, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-start motion-gpu"
+                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-start motion-gpu transition-shadow duration-300 hover:shadow-xl"
               >
                 <div className={`w-12 h-12 rounded-2xl ${v.color} flex items-center justify-center mb-6 text-xl shadow-inner`}>
                   {v.icon}
