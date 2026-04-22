@@ -35,28 +35,22 @@ const partners = [
 
 const speakers = [
   {
-    name: "Marc Lefebvre",
-    role: "Directeur Stratégie",
-    company: "Thalès Informatique",
-    image: "https://i.pravatar.cc/150?u=ml"
+    name: "Sanaâ BENAHMED",
+    role: "Directrice Générale",
+    company: "Héliolys consulting",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"
   },
   {
-    name: "Sophie Durand",
-    role: "Partnership Manager",
+    name: "Ayoub EL ABD",
+    role: "Strategic Partner Lead",
     company: "Factorial",
-    image: "https://i.pravatar.cc/150?u=sd"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400"
   },
   {
-    name: "Eric Magnan",
-    role: "Expert Paie",
-    company: "Sage France",
-    image: "https://i.pravatar.cc/150?u=em"
-  },
-  {
-    name: "Hélène Chevalier",
-    role: "Consultante Innovation",
-    company: "Heliolys",
-    image: "https://i.pravatar.cc/150?u=hc"
+    name: "Yassine REDA",
+    role: "Directeur commercial",
+    company: "Thalès Informatique",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400"
   }
 ];
 
@@ -230,9 +224,9 @@ export default function App() {
             
             <div className="bg-white p-4 rounded-lg shadow-2xl relative z-10">
               <img 
-                src="https://picsum.photos/seed/rh-digital/800/800" 
+                src="https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844664/image00054_ufe5kr.jpg" 
                 alt="Digital Transformation" 
-                className="w-full aspect-square object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full aspect-square object-cover rounded-sm transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="mt-4 flex items-center justify-between">
@@ -329,6 +323,38 @@ export default function App() {
         </div>
       </section>
 
+      {/* Results Section */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto">
+          <SectionTitle 
+            title="Des résultats concrets pour vos RH" 
+            subtitle="L'impact direct de la digitalisation sur votre performance quotidienne."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { val: "+40%", label: "Productivité RH", desc: "Gain de productivité grâce à l’automatisation des tâches administratives.", icon: "⚡" },
+              { val: "10h", label: "Gagnées / Semaine", desc: "Sur la gestion des congés, absences et validations.", icon: "⏱" },
+              { val: "-30%", label: "Temps Administratif", desc: "Temps économisé en centralisant toutes les données dans une plateforme.", icon: "📉" },
+              { val: "100%", label: "Visibilité Data", desc: "Visibilité sur vos données RH avec des reportings en temps réel.", icon: "📊" }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl hover:border-transparent transition-all duration-300"
+              >
+                <div className="text-3xl mb-4 grayscale group-hover:grayscale-0 transition-all">{stat.icon}</div>
+                <div className="text-4xl font-black text-primary mb-2 tracking-tight">{stat.val}</div>
+                <div className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-4">{stat.label}</div>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">{stat.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Speakers Section */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
@@ -336,21 +362,29 @@ export default function App() {
             title="Experts Intervenants" 
             subtitle="Rencontrez les décideurs et consultants qui façonnent le futur du Digital RH."
           />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {speakers.map((s, i) => (
               <motion.div 
                 key={i}
-                className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm flex items-center space-x-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300"
               >
-                <img 
-                  src={s.image} 
-                  alt={s.name} 
-                  className="w-10 h-10 object-cover rounded-full bg-slate-200"
-                  referrerPolicy="no-referrer"
-                />
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-primary/10 rounded-full scale-110 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <img 
+                    src={s.image} 
+                    alt={s.name} 
+                    className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full bg-slate-50 border-4 border-white shadow-lg relative z-10"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
                 <div>
-                  <div className="text-[11px] font-bold text-slate-800">{s.name}</div>
-                  <div className="text-[9px] text-slate-500">{s.role} @ {s.company.split(' ')[0]}</div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-1 leading-tight">{s.name}</h3>
+                  <div className="text-primary text-xs font-bold uppercase tracking-wider mb-2">{s.role}</div>
+                  <div className="text-slate-500 text-xs font-medium">{s.company}</div>
                 </div>
               </motion.div>
             ))}
@@ -445,13 +479,13 @@ export default function App() {
                 <input type="email" name="email" placeholder="jean.dupont@entreprise.com" className="input-polish" onChange={handleInputChange} />
               </div>
               <div>
-                <label className="label-polish">Entreprise</label>
-                <input type="text" name="entreprise" placeholder="Société S.A.S." className="input-polish" onChange={handleInputChange} />
+                <label className="label-polish">Téléphone</label>
+                <input type="tel" name="tel" placeholder="06 00 00 00 00" className="input-polish" onChange={handleInputChange} />
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="label-polish">Téléphone</label>
-                  <input type="tel" name="tel" placeholder="06 00 00 00 00" className="input-polish" onChange={handleInputChange} />
+                  <label className="label-polish">Entreprise</label>
+                  <input type="text" name="entreprise" placeholder="Société S.A.S." className="input-polish" onChange={handleInputChange} />
                 </div>
                 <div>
                   <label className="label-polish">Fonction</label>
