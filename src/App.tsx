@@ -36,7 +36,7 @@ const partners = [
 const speakers = [
   {
     name: "Sanaâ BENAHMED",
-    role: "Directrice Générale",
+    role: "CEO",
     company: "Héliolys consulting",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"
   },
@@ -48,7 +48,7 @@ const speakers = [
   },
   {
     name: "Yassine REDA",
-    role: "Directeur commercial",
+    role: "SALES DIRECTOR",
     company: "Thalès Informatique",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400"
   }
@@ -56,21 +56,18 @@ const speakers = [
 
 const program = [
   { time: "14:00", title: "Accueil & Coffee Break", desc: "Check-in, rafraîchissements et networking informel.", icon: <Coffee className="w-4 h-4" /> },
-  { time: "14:30", title: "Mot d’ouverture", desc: "Bienvenue et introduction de l’événement.", icon: <Mic2 className="w-4 h-4" /> },
-  { time: "14:40", title: "Thématique : L’entreprise agile", desc: "Conférence : Comment les RH soutiennent la croissance.", icon: <Presentation className="w-4 h-4" /> },
-  { time: "15:20", title: "Pause Networking", desc: "Échanges libres et discussions avec les équipes.", icon: <Coffee className="w-4 h-4" /> },
-  { time: "15:35", title: "Démo Factorial", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
-  { time: "16:05", title: "Session Q&A", desc: "Échanges interactifs et réponses à vos problématiques.", icon: <MessageSquare className="w-4 h-4" /> },
-  { time: "16:25", title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
-  { time: "16:40", title: "Closing & CTA", desc: "Synthèse des points clés et prochaines étapes.", icon: <Rocket className="w-4 h-4" /> },
-  { time: "16:50", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
+  { time: "14:30", title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
+  { time: "15:30", title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
+  { time: "16:15", title: "Session Q&A", desc: "Échanges interactifs et réponses à vos problématiques.", icon: <MessageSquare className="w-4 h-4" /> },
+  { time: "16:45", title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
+  { time: "17:15", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
 ];
 
 const values = [
-  { title: "Tendances RH", desc: "Anticipez les mutations digitales de demain pour vos équipes.", icon: <TrendingUp className="w-6 h-6" />, color: "bg-blue-50 text-blue-600", num: "01" },
-  { title: "Gestion de Paie", desc: "Sécurisez vos flux et votre conformité avec Sage et Factorial.", icon: <Zap className="w-6 h-6" />, color: "bg-emerald-50 text-emerald-600", num: "02" },
-  { title: "Réseautage", desc: "Échangez entre DRH, DAF et décideurs influents du secteur.", icon: <Users className="w-6 h-6" />, color: "bg-amber-50 text-amber-600", num: "03" },
-  { title: "Transformation", desc: "Retours d'expérience concrets et actionnables immédiatement.", icon: <Award className="w-6 h-6" />, color: "bg-purple-50 text-purple-600", num: "04" }
+  { title: "Bonnes pratiques applicables", desc: "Découvrez comment digitaliser et automatiser vos processus RH sans complexité.", icon: <Zap className="w-6 h-6" />, color: "bg-amber-50 text-amber-600", num: "01" },
+  { title: "Vision des tendances RH", desc: "Anticipez les évolutions du marché et adaptez votre stratégie aux nouveaux enjeux.", icon: <TrendingUp className="w-6 h-6" />, color: "bg-blue-50 text-blue-600", num: "02" },
+  { title: "Gagner en efficacité", desc: "Optimisez le temps de vos équipes RH en réduisant les tâches administratives.", icon: <Rocket className="w-6 h-6" />, color: "bg-purple-50 text-purple-600", num: "03" },
+  { title: "Échanges avec des experts", desc: "Profitez de l’expérience de professionnels ayant déjà réussi leur transformation RH.", icon: <Users className="w-6 h-6" />, color: "bg-emerald-50 text-emerald-600", num: "04" }
 ];
 
 const targetAudience = [
@@ -234,8 +231,8 @@ export default function App() {
                 referrerPolicy="no-referrer"
               />
               <div className="mt-4 flex items-center justify-between">
-                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Innovation RH 2026</div>
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Des événements qui ont marqué les professionnels RH</div>
+                <div className="w-2 h-2 rounded-full bg-primary shrink-0 ml-4"></div>
               </div>
             </div>
           </motion.div>
@@ -245,16 +242,22 @@ export default function App() {
       {/* Partners Section */}
       <section className="bg-slate-50 py-10 border-y border-slate-200/60">
         <div className="max-w-7xl mx-auto px-8 text-center">
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">En collaboration avec</p>
-          <div className="flex flex-wrap justify-around items-center gap-8 px-4">
-            {partners.map((p, i) => (
-              <img 
-                key={i} 
-                src={p.logo} 
-                alt={p.name} 
-                className={`${p.name === "Factorial" ? "h-6 md:h-9" : "h-8 md:h-12"} object-contain`} 
-                referrerPolicy="no-referrer" 
-              />
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">En partenariat avec</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 px-4">
+            {[
+              partners.find(p => p.name === "Sage"),
+              partners.find(p => p.name === "Factorial"),
+              partners.find(p => p.name === "Heliolys")
+            ].map((p, i) => (
+              p && (
+                <img 
+                  key={i} 
+                  src={p.logo} 
+                  alt={p.name} 
+                  className={`${p.name === "Factorial" ? "h-7 md:h-10" : "h-11 md:h-14"} object-contain`} 
+                  referrerPolicy="no-referrer" 
+                />
+              )
             ))}
           </div>
         </div>
@@ -332,15 +335,15 @@ export default function App() {
       <section className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
           <SectionTitle 
-            title="Des résultats concrets pour vos RH" 
+            title="L’impact pour vos RH" 
             subtitle="L'impact direct de la digitalisation sur votre performance quotidienne."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { val: "+40%", label: "Productivité RH", desc: "Gain de productivité grâce à l’automatisation des tâches administratives.", icon: "⚡" },
-              { val: "10h", label: "Gagnées / Semaine", desc: "Sur la gestion des congés, absences et validations.", icon: "⏱" },
-              { val: "-30%", label: "Temps Administratif", desc: "Temps économisé en centralisant toutes les données dans une plateforme.", icon: "📉" },
-              { val: "100%", label: "Visibilité Data", desc: "Visibilité sur vos données RH avec des reportings en temps réel.", icon: "📊" }
+              { label: "Productivité RH", desc: "Gain de productivité grâce à l’automatisation des tâches administratives.", icon: "⚡" },
+              { label: "Gagnées / Semaine", desc: "Temps gagné sur la gestion des congés, absences et validations.", icon: "⏱" },
+              { label: "Temps Administratif", desc: "Temps économisé en centralisant toutes les données dans une plateforme.", icon: "📉" },
+              { label: "Visibilité Data", desc: "Visibilité sur vos données RH avec des reportings en temps réel.", icon: "📊" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -350,9 +353,8 @@ export default function App() {
                 transition={{ delay: i * 0.1 }}
                 className="p-8 rounded-3xl bg-slate-50 border border-slate-100 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl hover:border-transparent transition-all duration-300"
               >
-                <div className="text-3xl mb-4 grayscale group-hover:grayscale-0 transition-all">{stat.icon}</div>
-                <div className="text-4xl font-black text-primary mb-2 tracking-tight">{stat.val}</div>
-                <div className="text-xs font-bold text-slate-800 uppercase tracking-widest mb-4">{stat.label}</div>
+                <div className="text-4xl mb-6 grayscale group-hover:grayscale-0 transition-all">{stat.icon}</div>
+                <div className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-4 leading-tight">{stat.label}</div>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium">{stat.desc}</p>
               </motion.div>
             ))}
@@ -502,7 +504,7 @@ export default function App() {
                   Confirmer ma participation
                 </button>
                 <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
-                  Inscription gratuite – Places limitées
+                  Accès gratuit sur inscription – Validation envoyée par email
                 </p>
               </div>
             </form>
