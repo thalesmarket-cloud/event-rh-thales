@@ -70,13 +70,6 @@ const program = [
   { time: "16:30", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
 ];
 
-const values = [
-  { title: "Bonnes pratiques applicables", desc: "Découvrez comment digitaliser et automatiser vos processus RH sans complexité.", icon: <Zap className="w-6 h-6" />, color: "bg-amber-50 text-amber-600", num: "01" },
-  { title: "Vision des tendances RH", desc: "Anticipez les évolutions du marché et adaptez votre stratégie aux nouveaux enjeux.", icon: <TrendingUp className="w-6 h-6" />, color: "bg-blue-50 text-blue-600", num: "02" },
-  { title: "Gagner en efficacité", desc: "Optimisez le temps de vos équipes RH en réduisant les tâches administratives.", icon: <Rocket className="w-6 h-6" />, color: "bg-purple-50 text-purple-600", num: "03" },
-  { title: "Échanges avec des experts", desc: "Profitez de l’expérience de professionnels ayant déjà réussi leur transformation RH.", icon: <Users className="w-6 h-6" />, color: "bg-emerald-50 text-emerald-600", num: "04" }
-];
-
 const targetAudience = [
   "Directeurs des Ressources Humaines (DRH)",
   "Directeurs Administratifs et Financiers (DAF)",
@@ -120,6 +113,15 @@ export default function App() {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
+
+  const [bingoState, setBingoState] = useState<Record<number, boolean>>({});
+
+  const toggleBingo = (index: number) => {
+    setBingoState(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+
+  const selectedCount = Object.values(bingoState).filter(Boolean).length;
+  const isBingoButtonActive = selectedCount >= 2;
 
   const [formData, setFormData] = useState({
     nom: "",
@@ -287,30 +289,67 @@ export default function App() {
         </div>
       </section>
 
-      {/* Why Participate Section */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <SectionTitle 
-            title="Pourquoi participer ?" 
-            subtitle="Une expertise partagée par les leaders du marché pour optimiser votre stratégie RH."
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {values.map((v, i) => (
-              <motion.div 
+      {/* Bingo Section - Replacing Why Participate */}
+      <section className="section-padding bg-slate-50 border-y border-slate-200/50">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Le "Bingo des Douleurs RH"</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto italic">
+              Si vous cochez plus de 2 cases, votre présence est (vraiment) obligatoire.
+            </p>
+          </div>
+
+          <div className="grid gap-3 mb-10">
+            {[
+              "J'ai encore perdu le ticket de parking de la compta.",
+              "Je gère les congés sur un tableur qui plante une fois sur deux.",
+              "On me demande mon mot de passe session 3 fois par jour.",
+              "J'ai une pile de contrats papier qui attendent une signature depuis 2024.",
+              "On me demande 'C’est quand les vacances ?' alors que c’est écrit sur le portail."
+            ].map((text, i) => (
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="card-polish p-6 flex flex-col items-start"
+                onClick={() => toggleBingo(i)}
+                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all border ${
+                  bingoState[i] 
+                    ? "bg-primary border-primary text-white shadow-lg shadow-primary/20" 
+                    : "bg-white border-slate-200 hover:border-primary/40 hover:bg-slate-50 text-slate-700"
+                }`}
               >
-                <div className={`w-10 h-10 rounded-lg ${v.color} flex items-center justify-center mb-4 font-bold text-sm`}>
-                  {v.num}
+                <div className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-all ${
+                  bingoState[i] 
+                    ? "bg-white border-white text-primary" 
+                    : "bg-slate-50 border-slate-300"
+                }`}>
+                  {bingoState[i] && <CheckCircle2 className="w-4 h-4" />}
                 </div>
-                <h4 className="text-sm font-bold text-slate-800 mb-2">{v.title}</h4>
-                <p className="text-slate-500 text-xs leading-relaxed">{v.desc}</p>
+                <span className="text-sm font-medium leading-relaxed">{text}</span>
               </motion.div>
             ))}
+          </div>
+
+          <div className="text-center">
+            <a 
+              href={isBingoButtonActive ? "#register" : "#"}
+              onClick={(e) => !isBingoButtonActive && e.preventDefault()}
+              className={`inline-flex items-center justify-center px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
+                isBingoButtonActive 
+                  ? "bg-primary text-white hover:scale-105 shadow-xl shadow-primary/20" 
+                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
+              }`}
+            >
+              S'inscrire maintenant
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </a>
+            {!isBingoButtonActive && (
+              <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                Plus que {2 - selectedCount} case{2 - selectedCount > 1 ? "s" : ""} pour activer
+              </p>
+            )}
           </div>
         </div>
       </section>
