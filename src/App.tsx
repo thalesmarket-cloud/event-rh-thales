@@ -301,7 +301,7 @@ export default function App() {
 
           <div className="grid gap-3 mb-10">
             {[
-              "J'ai encore perdu le ticket de parking de la compta.",
+              "J'ai encore perdu le ticket de parking pour les notes de frais.",
               "Je gère les congés sur un tableur qui plante une fois sur deux.",
               "On me demande mon mot de passe session 3 fois par jour.",
               "J'ai une pile de contrats papier qui attendent une signature depuis 2024.",
