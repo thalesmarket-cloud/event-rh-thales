@@ -24,13 +24,19 @@ import {
   Gift,
   Rocket
 } from "lucide-react";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 
 const partners = [
   { name: "Thalès Informatique", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1772030743/logo_thal%C3%A8s_1_tkhzkc.png" },
   { name: "Factorial", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1771409242/Factorial_logo_couleur_xywdb2.png" },
   { name: "Sage", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776701410/logo_event_grp_2_mzjosn.png" },
   { name: "Heliolys", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776701411/logo_event_grp_1_etedmr.png" }
+];
+
+const heroImages = [
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844664/image00054_ufe5kr.jpg",
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848850/image00052_q4qb19.jpg",
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848849/image00051_gwqgjr.jpg"
 ];
 
 const speakers = [
@@ -105,6 +111,15 @@ function SectionTitle({ title, subtitle, centered = true, dark = false }: { titl
 }
 
 export default function App() {
+  const [heroImageIndex, setHeroImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -223,14 +238,22 @@ export default function App() {
             {/* The Scotch / Tape */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/40 backdrop-blur-sm border border-white/20 -rotate-3 z-20 shadow-sm"></div>
             
-            <div className="bg-white p-4 rounded-lg shadow-2xl relative z-10">
-              <img 
-                src="https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844664/image00054_ufe5kr.jpg" 
-                alt="Digital Transformation" 
-                className="w-full aspect-square object-cover rounded-sm transition-all duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="mt-4 flex items-center justify-between">
+            <div className="bg-white p-4 rounded-lg shadow-2xl relative z-10 transition-all duration-500 overflow-hidden">
+              <div className="relative aspect-square overflow-hidden rounded-sm">
+                {heroImages.map((img, idx) => (
+                  <motion.img
+                    key={idx}
+                    src={img}
+                    alt="Digital Transformation"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: heroImageIndex === idx ? 1 : 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ))}
+              </div>
+              <div className="mt-4 flex items-center justify-between relative z-20">
                 <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Des événements qui ont marqué les professionnels RH</div>
                 <div className="w-2 h-2 rounded-full bg-primary shrink-0 ml-4"></div>
               </div>
