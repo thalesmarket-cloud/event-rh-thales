@@ -80,7 +80,7 @@ const targetAudience = [
 
 function SectionTitle({ title, subtitle, centered = true, dark = false }: { title: string; subtitle?: string; centered?: boolean; dark?: boolean }) {
   return (
-    <div className={`mb-12 ${centered ? "text-center" : "text-left"}`}>
+    <div className={`mb-12 motion-gpu ${centered ? "text-center" : "text-left"}`}>
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +170,7 @@ export default function App() {
       {/* Hero Section */}
       <header className="relative pt-32 pb-20 overflow-hidden bg-white">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 -z-10 pointer-events-none motion-gpu">
           <img 
             src="https://picsum.photos/seed/business-event/1920/1080" 
             alt="Event Background" 
@@ -185,6 +185,7 @@ export default function App() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="motion-gpu"
           >
             <div className="inline-block px-3 py-1 bg-blue-100/50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-6">
               Thématique de l'événement
@@ -236,7 +237,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: 2 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative justify-self-center lg:justify-self-end w-full max-w-[400px]"
+            className="relative justify-self-center lg:justify-self-end w-full max-w-[400px] motion-gpu"
           >
             {/* The Scotch / Tape */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/40 backdrop-blur-sm border border-white/20 -rotate-3 z-20 shadow-sm"></div>
@@ -314,7 +315,7 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 onClick={() => toggleBingo(i)}
-                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all border ${
+                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all border motion-gpu ${
                   bingoState[i] 
                     ? "bg-primary border-primary text-white shadow-lg shadow-primary/20" 
                     : "bg-white border-slate-200 hover:border-primary/40 hover:bg-slate-50 text-slate-700"
@@ -372,7 +373,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all relative overflow-hidden group"
+                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all relative overflow-hidden group motion-gpu"
               >
                 {/* Step Number Background */}
                 <div className="absolute -right-2 -bottom-4 text-7xl font-extrabold text-white/5 select-none transition-transform group-hover:scale-110">
@@ -410,7 +411,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300"
+                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300 motion-gpu"
               >
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-primary/10 rounded-full scale-110 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>

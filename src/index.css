@@ -13,9 +13,24 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply text-body bg-background antialiased selection:bg-primary/10 selection:text-primary;
+    @apply text-body bg-background antialiased selection:bg-primary/10 selection:text-primary overflow-x-hidden;
     font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Fix for flickering on mobile during animations */
+  .motion-gpu {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform, opacity;
   }
   
   h1, h2, h3, h4, h5, h6 {
