@@ -29,8 +29,21 @@
   .motion-gpu {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    transform: translateZ(0);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
     will-change: transform, opacity;
+  }
+  
+  /* Disable hover effects on touch devices to prevent flickering */
+  @media (hover: none) {
+    .group:hover .group-hover\:scale-110,
+    .group:hover .group-hover\:bg-white\/10,
+    .group:hover .group-hover\:bg-primary\/25 {
+      transform: none !important;
+      background-color: inherit !important;
+    }
   }
   
   h1, h2, h3, h4, h5, h6 {

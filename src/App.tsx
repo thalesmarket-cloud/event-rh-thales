@@ -310,15 +310,15 @@ export default function App() {
             ].map((text, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                initial={{ opacity: 0, scale: 0.98 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ delay: i * 0.05, duration: 0.4 }}
                 onClick={() => toggleBingo(i)}
-                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all border motion-gpu ${
+                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer border motion-gpu transition-colors duration-200 ${
                   bingoState[i] 
                     ? "bg-primary border-primary text-white shadow-lg shadow-primary/20" 
-                    : "bg-white border-slate-200 hover:border-primary/40 hover:bg-slate-50 text-slate-700"
+                    : "bg-white border-slate-200 text-slate-700"
                 }`}
               >
                 <div className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-all ${
@@ -369,11 +369,11 @@ export default function App() {
             {program.map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all relative overflow-hidden group motion-gpu"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.05, duration: 0.5 }}
+                className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 relative overflow-hidden group motion-gpu transition-colors duration-200"
               >
                 {/* Step Number Background */}
                 <div className="absolute -right-2 -bottom-4 text-7xl font-extrabold text-white/5 select-none transition-transform group-hover:scale-110">
@@ -409,9 +409,9 @@ export default function App() {
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300 motion-gpu"
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="bg-white p-6 rounded-2xl border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex flex-col items-center text-center group motion-gpu"
               >
                 <div className="relative mb-6">
                   <div className="absolute inset-0 bg-primary/10 rounded-full scale-110 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
