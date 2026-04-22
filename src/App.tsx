@@ -474,16 +474,16 @@ export default function App() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="label-polish">Prénom</label>
-                  <input type="text" name="prenom" placeholder="Jean" className="input-polish" onChange={handleInputChange} />
+                  <input type="text" name="prenom" placeholder="Mohamed" className="input-polish" onChange={handleInputChange} />
                 </div>
                 <div>
                   <label className="label-polish">Nom</label>
-                  <input type="text" name="nom" placeholder="Dupont" className="input-polish" onChange={handleInputChange} />
+                  <input type="text" name="nom" placeholder="Berrada" className="input-polish" onChange={handleInputChange} />
                 </div>
               </div>
               <div>
                 <label className="label-polish">Email Professionnel</label>
-                <input type="email" name="email" placeholder="jean.dupont@entreprise.com" className="input-polish" onChange={handleInputChange} />
+                <input type="email" name="email" placeholder="mohamed.berrada@entreprise.com" className="input-polish" onChange={handleInputChange} />
               </div>
               <div>
                 <label className="label-polish">Téléphone</label>
