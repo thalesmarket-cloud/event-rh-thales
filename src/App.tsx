@@ -37,7 +37,7 @@ const heroImages = [
   "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776844664/image00054_ufe5kr.jpg",
   "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848850/image00052_q4qb19.jpg",
   "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776848849/image00051_gwqgjr.jpg",
-  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776849290/image00009_tkbh8w.jpg"
+  "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776864591/image00009_vcuuhk.jpg"
 ];
 
 const speakers = [
@@ -62,12 +62,11 @@ const speakers = [
 ];
 
 const program = [
-  { time: "14:00", title: "Accueil & Coffee Break", desc: "Check-in, rafraîchissements et networking informel.", icon: <Coffee className="w-4 h-4" /> },
-  { time: "14:40", title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
-  { time: "15:15", title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
-  { time: "16:05", title: "Session Q&A", desc: "Échanges interactifs et réponses à vos problématiques.", icon: <MessageSquare className="w-4 h-4" /> },
-  { time: "16:15", title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
-  { time: "16:30", title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
+  { title: "Accueil & Coffee Break", desc: "Check-in, rafraîchissements et networking informel.", icon: <Coffee className="w-4 h-4" /> },
+  { title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
+  { title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
+  { title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
+  { title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
 ];
 
 const targetAudience = [
@@ -113,15 +112,6 @@ export default function App() {
     }, 3000);
     return () => clearInterval(timer);
   }, []);
-
-  const [bingoState, setBingoState] = useState<Record<number, boolean>>({});
-
-  const toggleBingo = (index: number) => {
-    setBingoState(prev => ({ ...prev, [index]: !prev[index] }));
-  };
-
-  const selectedCount = Object.values(bingoState).filter(Boolean).length;
-  const isBingoButtonActive = selectedCount >= 2;
 
   const [formData, setFormData] = useState({
     nom: "",
@@ -290,67 +280,55 @@ export default function App() {
         </div>
       </section>
 
-      {/* Bingo Section - Replacing Why Participate */}
-      <section className="section-padding bg-slate-50 border-y border-slate-200/50">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Le "Bingo des Douleurs RH"</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto italic">
-              Si vous cochez plus de 2 cases, votre présence est (vraiment) obligatoire.
-            </p>
-          </div>
-
-          <div className="grid gap-3 mb-10">
+      {/* Why Participate Section */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <SectionTitle 
+            title="Pourquoi participer à cet événement ?" 
+            subtitle="Une expertise partagée pour optimiser votre stratégie et vos processus RH."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              "J'ai encore perdu le ticket de parking pour les notes de frais.",
-              "Je gère les congés sur un tableur qui plante une fois sur deux.",
-              "On me demande mon mot de passe session 3 fois par jour.",
-              "J'ai une pile de contrats papier qui attendent une signature depuis 2024.",
-              "On me demande 'C’est quand les vacances ?' alors que c’est écrit sur le portail."
-            ].map((text, i) => (
-              <motion.div
+              { 
+                title: "Des interventions orientées terrain", 
+                desc: "Des experts partageront des retours d’expérience concrets sur les enjeux RH actuels.",
+                icon: "⚡",
+                color: "bg-amber-50 text-amber-600"
+              },
+              { 
+                title: "Des cas d’usage réels", 
+                desc: "Découvrez comment des entreprises optimisent déjà leur gestion RH avec des solutions comme Factorial HR.",
+                icon: "📊",
+                color: "bg-blue-50 text-blue-600"
+              },
+              { 
+                title: "Des temps forts à forte valeur ajoutée", 
+                desc: "Démonstrations, échanges et bonnes pratiques pour vous aider à gagner en efficacité.",
+                icon: "🚀",
+                color: "bg-purple-50 text-purple-600"
+              },
+              { 
+                title: "Un espace d’échanges entre décideurs RH", 
+                desc: "Rencontrez d’autres professionnels confrontés aux mêmes défis que vous.",
+                icon: "🤝",
+                color: "bg-emerald-50 text-emerald-600"
+              }
+            ].map((v, i) => (
+              <motion.div 
                 key={i}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ delay: i * 0.05, duration: 0.4 }}
-                onClick={() => toggleBingo(i)}
-                className={`flex items-center gap-4 p-5 rounded-2xl cursor-pointer border motion-gpu transition-colors duration-200 ${
-                  bingoState[i] 
-                    ? "bg-primary border-primary text-white shadow-lg shadow-primary/20" 
-                    : "bg-white border-slate-200 text-slate-700"
-                }`}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-start motion-gpu"
               >
-                <div className={`w-6 h-6 rounded-lg flex items-center justify-center border transition-all ${
-                  bingoState[i] 
-                    ? "bg-white border-white text-primary" 
-                    : "bg-slate-50 border-slate-300"
-                }`}>
-                  {bingoState[i] && <CheckCircle2 className="w-4 h-4" />}
+                <div className={`w-12 h-12 rounded-2xl ${v.color} flex items-center justify-center mb-6 text-xl shadow-inner`}>
+                  {v.icon}
                 </div>
-                <span className="text-sm font-medium leading-relaxed">{text}</span>
+                <h4 className="text-sm font-bold text-slate-800 mb-3 leading-tight">{v.title}</h4>
+                <p className="text-slate-500 text-xs leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
-          </div>
-
-          <div className="text-center">
-            <a 
-              href={isBingoButtonActive ? "#register" : "#"}
-              onClick={(e) => !isBingoButtonActive && e.preventDefault()}
-              className={`inline-flex items-center justify-center px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest transition-all ${
-                isBingoButtonActive 
-                  ? "bg-primary text-white hover:scale-105 shadow-xl shadow-primary/20" 
-                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
-              }`}
-            >
-              S'inscrire maintenant
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </a>
-            {!isBingoButtonActive && (
-              <p className="mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                Plus que {2 - selectedCount} case{2 - selectedCount > 1 ? "s" : ""} pour activer
-              </p>
-            )}
           </div>
         </div>
       </section>
@@ -385,7 +363,6 @@ export default function App() {
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-[10px] font-mono text-[#1DB2E9] font-bold tracking-wider">{item.time}</span>
                     <h3 className="text-sm font-bold text-white tracking-tight">{item.title}</h3>
                   </div>
                   <p className="text-slate-300 text-xs leading-relaxed max-w-[280px]">{item.desc}</p>
