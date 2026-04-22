@@ -281,7 +281,7 @@ export default function App() {
                   key={i} 
                   src={p.logo} 
                   alt={p.name} 
-                  className={`${p.name === "Factorial" ? "h-7 md:h-10" : "h-11 md:h-14"} object-contain`} 
+                  className={`${p.name === "Factorial" ? "h-7 md:h-10" : p.name === "Heliolys" ? "h-14 md:h-20" : "h-11 md:h-14"} object-contain`} 
                   referrerPolicy="no-referrer" 
                 />
               )
