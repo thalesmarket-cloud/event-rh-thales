@@ -240,7 +240,7 @@ export default function App() {
             className="relative justify-self-center lg:justify-self-end w-full max-w-[400px] motion-gpu"
           >
             {/* The Scotch / Tape */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-10 bg-white/40 backdrop-blur-sm border border-white/20 -rotate-3 z-20 shadow-sm"></div>
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-10 bg-primary/20 backdrop-blur-md border border-primary/20 -rotate-3 z-20 shadow-sm"></div>
             
             <div className="bg-white p-4 rounded-lg shadow-2xl relative z-10 transition-all duration-500 overflow-hidden">
               <div className="relative aspect-square overflow-hidden rounded-sm">
