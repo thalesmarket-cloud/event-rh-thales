@@ -243,8 +243,9 @@ export default function App() {
       </header>
 
       {/* Partners Section */}
-      <section className="bg-slate-50 py-8 border-y border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-8">
+      <section className="bg-slate-50 py-10 border-y border-slate-200/60">
+        <div className="max-w-7xl mx-auto px-8 text-center">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">En collaboration avec</p>
           <div className="flex flex-wrap justify-around items-center gap-8 px-4">
             {partners.map((p, i) => (
               <img 
