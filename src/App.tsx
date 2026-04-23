@@ -45,7 +45,7 @@ const speakers = [
     name: "Sanaâ BENAHMED",
     role: "CEO",
     company: "Héliolys consulting",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"
+    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776875108/1760553646722_atj1zr.jpg"
   },
   {
     name: "Ayoub EL ABD",
@@ -57,7 +57,7 @@ const speakers = [
     name: "Yassine REDA",
     role: "SALES DIRECTOR",
     company: "Thalès Informatique",
-    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776873225/yassine_reda_snwldv.jpg"
+    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776874919/profile_picture_eactkc.webp"
   }
 ];
 
