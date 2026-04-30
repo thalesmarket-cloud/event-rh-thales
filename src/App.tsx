@@ -63,7 +63,7 @@ const speakers = [
 
 const program = [
   { title: "Accueil & Coffee Break", desc: "Check-in, rafraîchissements et networking informel.", icon: <Coffee className="w-4 h-4" /> },
-  { title: "Thématique : L’entreprise agile", desc: <span>Comment les RH soutiennent la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
+  { title: "Thématique : L’entreprise agile à l’ère du digital", desc: <span>Comment le SIRH soutient la croissance. Animée par <b>Mme Sanaâ BENAHMED</b>.</span>, icon: <Presentation className="w-4 h-4" /> },
   { title: "Découverte de la solution en live", desc: "Cas d’usage concrets et mise en situation réelle.", icon: <Zap className="w-4 h-4" /> },
   { title: "Tombola & Animation", desc: "Tirage au sort et remise de prix exclusifs.", icon: <Gift className="w-4 h-4" /> },
   { title: "Cocktail de Clôture", desc: "Networking et opportunités business.", icon: <Network className="w-4 h-4" /> }
@@ -220,11 +220,11 @@ export default function App() {
             <div className="inline-block px-3 py-1 bg-blue-100/50 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full mb-6">
               Thématique de l'événement
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] mb-6 uppercase tracking-tight">
-              L’entreprise agile : comment les RH soutiennent la croissance
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.15] mb-6 uppercase tracking-tight text-balance">
+              L’entreprise agile à l’ère du digital : comment le SIRH soutient la croissance
             </h1>
             <p className="text-sm md:text-base text-slate-600 mb-8 max-w-xl leading-relaxed">
-              Explorez l'avenir de la gestion RH : digitalisation, performance et expérience collaborateur. Une demi-journée stratégique pour transformer vos processus et libérer le potentiel de vos équipes.
+              Explorez l’avenir de la gestion RH à l’ère du digital : comment le SIRH devient un levier clé de performance, d’agilité et d’expérience collaborateur. Une demi-journée stratégique pour transformer vos processus et accompagner la croissance de votre organisation.
             </p>
             
             <div className="flex flex-wrap gap-x-8 gap-y-4 mb-10">
