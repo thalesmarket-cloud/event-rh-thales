@@ -74,7 +74,7 @@ const targetAudience = [
   "Directeurs Administratifs et Financiers (DAF)",
   "Responsables RH & Talent Acquisition",
   "Dirigeants d'entreprise & Décideurs",
-  "Responsables Transformation Digitale"
+  "DSI & Responsables Transformation Digitale"
 ];
 
 function SectionTitle({ title, subtitle, centered = true, dark = false }: { title: string; subtitle?: string; centered?: boolean; dark?: boolean }) {
