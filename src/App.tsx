@@ -637,7 +637,7 @@ function ThankYouPage() {
             <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Merci pour votre inscription !</h1>
             
             <p className="text-slate-600 mb-10 leading-relaxed max-w-lg mx-auto">
-              Nous sommes ravis de vous compter parmi nous pour cet événement exclusif. Un email de confirmation vient de vous être envoyé.
+              Nous sommes ravis de vous compter parmi nous pour cet événement exclusif. Nous vous contacterons par téléphone pour confirmer votre présence.
             </p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-10 text-left">
