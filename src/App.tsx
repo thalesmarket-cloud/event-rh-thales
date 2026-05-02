@@ -25,6 +25,7 @@ import {
   Rocket
 } from "lucide-react";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 const partners = [
   { name: "Thalès Informatique", logo: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1772030743/logo_thal%C3%A8s_1_tkhzkc.png" },
@@ -104,6 +105,18 @@ function SectionTitle({ title, subtitle, centered = true, dark = false }: { titl
 }
 
 export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/merci" element={<ThankYouPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function LandingPage() {
+  const navigate = useNavigate();
   const [heroImageIndex, setHeroImageIndex] = useState(0);
 
   useEffect(() => {
@@ -123,7 +136,6 @@ export default function App() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -134,10 +146,10 @@ export default function App() {
     setIsSubmitting(true);
 
     try {
-      // Lien App Script à remplacer
+      // Lien App Script
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTRGPi8B22dxUgBwAt0FJs2rDwKmc28td5ISejQqhovdOLGFYrjn9NT-6WOCnLIfuQ7A/exec";
       
-      const response = await fetch(SCRIPT_URL, {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -149,15 +161,9 @@ export default function App() {
         }),
       });
 
-      setIsSuccess(true);
-      setFormData({
-        nom: "",
-        prenom: "",
-        email: "",
-        tel: "",
-        entreprise: "",
-        fonction: ""
-      });
+      // Redirection vers la page de remerciement
+      navigate("/merci");
+      
     } catch (error) {
       console.error("Submission error:", error);
       alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
@@ -521,77 +527,55 @@ export default function App() {
           </div>
 
           <div className="bg-white rounded-2xl p-8 md:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.06)] border border-slate-100">
-            {isSuccess ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-12"
-              >
-                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
-                  <CheckCircle2 className="w-10 h-10" />
+            <form className="grid gap-4" onSubmit={handleSubmit}>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="label-polish">Prénom</label>
+                  <input type="text" name="prenom" required placeholder="Mohamed" className="input-polish" value={formData.prenom} onChange={handleInputChange} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">Inscription confirmée !</h3>
-                <p className="text-slate-500 mb-8 max-w-sm mx-auto">
-                  Merci pour votre inscription. Vous recevrez une confirmation par email très prochainement.
-                </p>
+                <div>
+                  <label className="label-polish">Nom</label>
+                  <input type="text" name="nom" required placeholder="Berrada" className="input-polish" value={formData.nom} onChange={handleInputChange} />
+                </div>
+              </div>
+              <div>
+                <label className="label-polish">Email Professionnel</label>
+                <input type="email" name="email" required placeholder="mohamed.berrada@entreprise.com" className="input-polish" value={formData.email} onChange={handleInputChange} />
+              </div>
+              <div>
+                <label className="label-polish">Téléphone</label>
+                <input type="tel" name="tel" required placeholder="06 00 00 00 00" className="input-polish" value={formData.tel} onChange={handleInputChange} />
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="label-polish">Entreprise</label>
+                  <input type="text" name="entreprise" required placeholder="Société S.A.S." className="input-polish" value={formData.entreprise} onChange={handleInputChange} />
+                </div>
+                <div>
+                  <label className="label-polish">Fonction</label>
+                  <input type="text" name="fonction" required placeholder="DRH, DAF, etc." className="input-polish" value={formData.fonction} onChange={handleInputChange} />
+                </div>
+              </div>
+              <div className="pt-4">
                 <button 
-                  onClick={() => setIsSuccess(false)}
-                  className="text-sm font-bold text-primary uppercase tracking-widest hover:underline"
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className={`w-full btn-primary text-sm py-4 flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  Faire une autre inscription
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    "Confirmer ma participation"
+                  )}
                 </button>
-              </motion.div>
-            ) : (
-              <form className="grid gap-4" onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="label-polish">Prénom</label>
-                    <input type="text" name="prenom" required placeholder="Mohamed" className="input-polish" value={formData.prenom} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label className="label-polish">Nom</label>
-                    <input type="text" name="nom" required placeholder="Berrada" className="input-polish" value={formData.nom} onChange={handleInputChange} />
-                  </div>
-                </div>
-                <div>
-                  <label className="label-polish">Email Professionnel</label>
-                  <input type="email" name="email" required placeholder="mohamed.berrada@entreprise.com" className="input-polish" value={formData.email} onChange={handleInputChange} />
-                </div>
-                <div>
-                  <label className="label-polish">Téléphone</label>
-                  <input type="tel" name="tel" required placeholder="06 00 00 00 00" className="input-polish" value={formData.tel} onChange={handleInputChange} />
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="label-polish">Entreprise</label>
-                    <input type="text" name="entreprise" required placeholder="Société S.A.S." className="input-polish" value={formData.entreprise} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label className="label-polish">Fonction</label>
-                    <input type="text" name="fonction" required placeholder="DRH, DAF, etc." className="input-polish" value={formData.fonction} onChange={handleInputChange} />
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className={`w-full btn-primary text-sm py-4 flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Envoi en cours...
-                      </>
-                    ) : (
-                      "Confirmer ma participation"
-                    )}
-                  </button>
-                  <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
-                    Accès gratuit sur inscription – Validation envoyée par email
-                  </p>
-                </div>
-              </form>
-            )}
+                <p className="text-center text-slate-400 text-[9px] mt-6 uppercase tracking-widest font-bold">
+                  Accès gratuit sur inscription – Validation envoyée par email
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </section>
@@ -620,6 +604,98 @@ export default function App() {
               ))}
             </div>
           </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function ThankYouPage() {
+  const currentYear = new Date().getFullYear();
+  
+  return (
+    <div className="min-h-screen bg-slate-50 flex flex-col">
+      <nav className="fixed top-0 w-full z-50 bg-white border-b border-slate-200 px-8 py-3 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-6">
+            <img src={partners[0].logo} alt="Thalès Informatique" className="h-10 object-contain" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+      </nav>
+
+      <main className="flex-grow pt-32 pb-20 px-8">
+        <div className="max-w-3xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-[2.5rem] p-8 md:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.06)] border border-slate-100 text-center"
+          >
+            <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
+              <CheckCircle2 className="w-10 h-10" />
+            </div>
+            
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">Merci pour votre inscription !</h1>
+            
+            <p className="text-slate-600 mb-10 leading-relaxed max-w-lg mx-auto">
+              Nous sommes ravis de vous compter parmi nous pour cet événement exclusif. Un email de confirmation vient de vous être envoyé.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4 mb-10 text-left">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <div className="flex items-center gap-3 mb-3 text-primary">
+                  <Calendar className="w-5 h-5" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Date & Heure</span>
+                </div>
+                <p className="font-bold text-slate-800 text-sm">Mercredi 13 Mai 2026</p>
+                <p className="text-slate-500 text-xs">14:00 - 17:00</p>
+              </div>
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <div className="flex items-center gap-3 mb-3 text-primary">
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-400">Localisation</span>
+                </div>
+                <p className="font-bold text-slate-800 text-sm">Hôtel Onomo</p>
+                <p className="text-slate-500 text-xs">Casablanca, Maroc</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href="/" 
+                className="btn-primary text-sm px-10 py-4 flex items-center gap-2"
+              >
+                Retour à l'accueil
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <button 
+                onClick={() => window.print()}
+                className="text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2"
+              >
+                Imprimer mon invitation
+              </button>
+            </div>
+          </motion.div>
+          
+          <div className="mt-12 text-center border-t border-slate-200 pt-10">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-8">En partenariat avec</p>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-60">
+              {partners.slice(1).map((p, i) => (
+                <img 
+                  key={i} 
+                  src={p.logo} 
+                  alt={p.name} 
+                  className={`${p.name === "Factorial" ? "h-6 md:h-8" : p.name === "Heliolys" ? "h-10 md:h-12" : "h-9 md:h-11"} object-contain`} 
+                  referrerPolicy="no-referrer" 
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer className="py-8 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-8 text-center text-[10px] text-slate-400 font-bold tracking-[0.2em] uppercase">
+          THALÈS INFORMATIQUE © {currentYear}
         </div>
       </footer>
     </div>
