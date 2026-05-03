@@ -610,8 +610,20 @@ function LandingPage() {
   );
 }
 
+declare global {
+  interface Window {
+    lintrk: any;
+  }
+}
+
 function ThankYouPage() {
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    if (window.lintrk) {
+      window.lintrk('track');
+    }
+  }, []);
   
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
