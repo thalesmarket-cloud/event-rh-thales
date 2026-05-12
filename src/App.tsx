@@ -58,7 +58,7 @@ const speakers = [
     name: "Yassine REDA",
     role: "SALES DIRECTOR",
     company: "Thalès Informatique",
-    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1776874919/profile_picture_eactkc.webp"
+    image: "https://res.cloudinary.com/dmutnjgp8/image/upload/v1778584658/Generated_Image_May_12_2026_-_12_14PM_1_wptqek.png"
   }
 ];
 
